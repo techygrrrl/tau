@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Local - tau</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Local";
+        var mkdocs_page_input_path = "deployment/local.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/bash.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> tau
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Local</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cloud/">Cloud</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env_options/">Enviromental Options</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/connecting/">Connecting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/v1/">V1</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">tau</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Deployment &raquo;</li><li>Local</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/Team-TAU/tau/edit/master/docs/deployment/local.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tau-local-deployment">TAU Local Deployment</h1>
+<p>The simplest way to deploy TAU is locally, using Docker.  Setting TAU up locally will use <code>docker-compose</code> to orchestrate the TAU, Redis, and Postgress containers, and will use ngrok to open a tunnel to your TUA instance for Twitch's webhooks.</p>
+<ol>
+<li><a href="../twitch_dev/">Get a Twitch Client ID and Client Secret</a></li>
+<li>Copy <code>.env_sample</code> to <code>.env</code></li>
+<li>Open and edit the newly created <code>.env</code> file. Set the following values.  Please do not use the <code>#</code> character in any of your passwords or secret keys.</li>
+<li><code>TWITCH_APP_ID</code> Set your twitch app client id. This is the "Client ID" available by clicking the "Manage" button for your app on this page: <a href="https://dev.twitch.tv/console/apps">https://dev.twitch.tv/console/apps</a></li>
+<li><code>TWITCH_CLIENT_SECRET</code> Set your twitch app secret. This is the "Client Secret" available by clicking the "Manage" button for your  app on this page: <a href="https://dev.twitch.tv/console/apps">https://dev.twitch.tv/console/apps</a> If you don't already one (or you no longer have your  original one), click "New Secret". You'll only be able to see it when you first make it so put it in your password manager.</li>
+<li><code>TWITCH_WEBHOOK_SECRET</code> This secret is required for Twitch EventSub. It's one that you generate yourself (i.e. it's not the app client secret from the <a href="https://dev.twitch.tv">dev.twitch.tv</a> page).  The secret must be between 10-100 characters. You can use this one, or genrate one yourself. </li>
+<li><code>POSTGRES_PW</code> This is the root password which will be set for your Postgres container. You can use the password set here but it is more secure to set your own strong password. You likely wont need to directly use this password at all.</li>
+<li><code>DJANGO_DB_PW</code> This is the password used for the django database. You can use the random password already set, but it is more secure to set your own. You likely wont need to  directly use this password at all.</li>
+<li><code>DJANGO_SECRET_KEY</code> This is a random key for Django. You can use this one, but it's more secure to generate your own.</li>
+<li><code>PORT</code> The default port is 8000. If you need to use another port, change it here. </li>
+<li><code>NGROK_TOKEN</code> It is recommended that you use a free (or paid) ngrok account and token, as non-account tunnels have more limited connection counts.  If you have an ngrok token you would like to use, uncomment the <code>NGROK_TOKEN</code> line and provide your token.</li>
+<li>After saving the .env file, in the root TAU directory execute the command: <code>docker compose up</code></li>
+<li>Open a web browser and navigate to the url: <code>http://localhost:PORT/</code>.</li>
+<li>Enter in a local TAU username, and password then click "Create Account".  This does not need to be your twitch username.</li>
+<li>Enter in your Twitch username, and click Setup Channel.</li>
+<li>Authorize TAU to the requested scopes.</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cloud/" class="btn btn-neutral float-right" title="Cloud">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2021, <a href="https://github.com/finitesingularity">finitesingularity</a>.</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Team-TAU/tau" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cloud/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Railway Deployment - tau</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Railway Deployment";
+        var mkdocs_page_input_path = "deployment/railway.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/bash.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> tau
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../local/">Local</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cloud/">Cloud</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env_options/">Enviromental Options</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/connecting/">Connecting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/v1/">V1</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">tau</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Railway Deployment</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/Team-TAU/tau/edit/master/docs/deployment/railway.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="railway-deployment">Railway Deployment</h1>
+<p><a href="https://railway.app/">Railway</a> is a cost effective way to run TAU 24/7 in the cloud. The following steps should get you started! These instructions assume you have cloned the TAU repo to your local drive, and that you have npm installed (the railway CLI app requires npm).</p>
+<!-- [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2FTeam-TAU%2Ftau%2Ftree%2Fdocumentation-railway-docs&plugins=postgresql%2Credis&envs=TWITCH_APP_ID%2CTWITCH_CLIENT_SECRET%2CTWITCH_WEBHOOK_SECRET%2CDJANGO_DB_PW%2CDJANGO_SECRET_KEY%2CDJANGO_CONFIGURATION%2CPORT&TWITCH_APP_IDDesc=Your+Twitch+TAU+app+id.&TWITCH_CLIENT_SECRETDesc=Your+Twitch+TAU+client+secret.&TWITCH_WEBHOOK_SECRETDesc=Random+string+of+10-100+characters.&DJANGO_DB_PWDesc=A+password+you+would+like+to+use+for+your+TAU+postgres+database.&DJANGO_SECRET_KEYDesc=Random+string+of+10-100+characters.&DJANGO_CONFIGURATIONDesc=DO+NOT+CHANGE&PORTDesc=DO+NOT+CHANGE&DJANGO_CONFIGURATIONDefault=Railway&PORTDefault=443&referralCode=TAU) -->
+
+<ol>
+<li><a href="https://railway.app/login">Create a railway account/login</a></li>
+<li><a href="https://railway.app/dashboard">Go to your railway dashboard</a></li>
+<li>Click "+ New Project" and select "Empty Project"</li>
+<li>Click "+ New" in the upper right, and select "Database" --&gt; "Add PostgreSQL"</li>
+<li>Click "+ New" in the upper right, and select "Database" --&gt; "Add Redis"</li>
+<li>Click "+ New" in the upper right, and select "Empty Service"</li>
+<li>Click on the new empty service which was just created.</li>
+<li>Click the "Settings" tab under "Environment &gt; Service Domains", edit the production domain to a url that you want (e.g.- tau-twitchname.up.railway.app). Note this domain, as it will be required in your environment variables, and when setting up TAU in the twitch dev dashboard.</li>
+<li><a href="../twitch_dev/">Get a Twitch Client ID and Client Secret</a>. NOTE- rather than <code>http://localhost:PORT/twitch-callback/</code> as your OAuth redirect URL, you must use https, the domain you set up in the prior step, and no port. E.g.: <code>https://tau-twitchname.up.railway.app</code>.</li>
+<li>Copy the sample <code>.env</code> data below, and paste in a text editor. Add values for the first six enviornment variables as explained below.</li>
+<li>Back in the <code>Variables</code> section of your railway projects empty service, click <code>Bulk Import</code>, and paste in your edited .env data, and click <code>Add</code>. Then close the service panel (x in the upper right corner of the panel)</li>
+<li>In a terminal install the railway CLI using npm: <code>npm i -g @railway/cli</code> then login to railway: <code>railway login</code></li>
+<li>In your railway project dashboard, click on "Set up your project locally" in the lower left. Copy the link command with your projects UUID (something like: <code>railway link SOME-UUID-HERE</code>)</li>
+<li>In the terminal, navigate to the TAU root directory, and paste/run the link command.</li>
+<li>In the terminal, spin up your railway TAU instance (from the root TAU directory) with the command: <code>railway up</code>.</li>
+<li>After the container spins up, navigate to your projects url, and complete the setup wizard. Note- it can take a few minutes for everything to spin up. When you navigate to your project url, you may see a warning that the project is spinning up or isnt connecting properly. Be patient, and it should start working in a couple minutes.</li>
+<li>You're now running TAU!</li>
+</ol>
+<h2 id="sample-env-data">Sample .env data.</h2>
+<p>The first 6 values must be set. <code>TWITCH_APP_ID</code> and <code>TWITCH_CLIENT_SECRET</code> come from the Twitch developer settings above, <code>TWITCH_WEBHOOK_SECRET</code> should be a random string of characters 10-100 characters long. <code>DJANGO_DB_PW</code> can be any password you want to set for the Django databse user, <code>DJANGO_SECRET_KEY</code> should be a different random string of characters 10-100 characters long, and <code>PUBLIC_URL</code> should be the deployment domain, e.g.- <code>tau-twitchname.up.railway.app</code>. The last two values (<code>DJANGO_CONFIGURATION</code> and <code>PORT</code>) should use the provided values below.</p>
+<pre><code>TWITCH_APP_ID=
+TWITCH_CLIENT_SECRET=
+TWITCH_WEBHOOK_SECRET=
+DJANGO_DB_PW=
+DJANGO_SECRET_KEY=
+PUBLIC_URL=
+DJANGO_CONFIGURATION=Railway
+PORT=443
+</code></pre>
+<h2 id="connecting-to-websockets">Connecting to Websockets</h2>
+<p>Now that TAU is deployed, you can connect to it via websockets at <code>wss://tau-twitchname.up.railway.app:443/ws/twitch-events/</code> using your new deployment domain.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2021, <a href="https://github.com/finitesingularity">finitesingularity</a>.</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Team-TAU/tau" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
