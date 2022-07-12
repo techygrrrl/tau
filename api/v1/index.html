@@ -239,7 +239,7 @@
 <h2 id="twitch-events">Twitch Events</h2>
 <p>The twitch events endpoint allows you to query the twitch events stored in the database, as well as the ability to trigger test events.</p>
 <h3 id="get-apiv1twitch-events">GET <code>/api/v1/twitch-events</code></h3>
-<p>Get a list of the most recent events that have been received.  This endpoint is paginated, meaning that you may need to make multiple requests to get the data that you want. To know the URLs for pagination, see the <code>next</code> and <code>previous</code> fields in.</p>
+<p>Get a list of the most recent events that have been received. This endpoint is paginated, meaning that you may need to make multiple requests to get the data that you want. To know the URLs for pagination, see the <code>next</code> and <code>previous</code> fields in.</p>
 <h4 id="request">Request</h4>
 <pre><code class="language-bash">curl http://&lt;TAU_SERVER&gt;/api/v1/twitch-events -H 'Authorization: Token &lt;AUTH_TOKEN&gt;'
 </code></pre>
@@ -266,21 +266,24 @@
     ]
 }
 </code></pre>
-<p>Filters are also supported by the twitch events endpoint in order to limit results.  Supported filters:
-* Event Type (<code>event_type</code>)
-* User ID (<code>user_id</code>)
-* Username (<code>user_name</code>)
-* Reward ID (<code>reward_id</code>)
-* Recipient User ID (<code>recipient_user_id</code>)
-* Recipient User Name (<code>recipient_user_name</code>)
-* Raid Broadcaster ID (<code>raid_broadcaster_id</code>)
-* Raid Broadcaster Name (<code>raid_broadcaster_name</code>)</p>
+<p>Filters are also supported by the twitch events endpoint in order to limit results. Supported filters:</p>
+<ul>
+<li>Event Type (<code>event_type</code>)</li>
+<li>User ID (<code>user_id</code>)</li>
+<li>Username (<code>user_name</code>)</li>
+<li>Reward ID (<code>reward_id</code>)</li>
+<li>Raid From User Name (<code>raid_from</code>)</li>
+<li>Raid To User Name (<code>raid_to</code>)</li>
+</ul>
 <p>Filters can be specified using query parameters, and multiple filters can be specified, for example to get all raid events from <code>BaldBeardedBuilder</code>:</p>
 <h4 id="request_1">Request</h4>
 <pre><code class="language-bash">curl http://&lt;TAU_SERVER&gt;/api/v1/twitch-events?event_type=raid&amp;user_name=baldbeardedbuilder -H 'Authorization: Token &lt;AUTH_TOKEN&gt;'
 </code></pre>
+<p>or use the <code>raid_from</code> filter without specifying the raid event type:</p>
+<pre><code class="language-bash">curl http://&lt;TAU_SERVER&gt;/api/v1/twitch-events?raid_from=baldbeardedbuilder -H 'Authorization: Token &lt;AUTH_TOKEN&gt;'
+</code></pre>
 <h3 id="post-apiv1twitch-events">POST <code>/api/v1/twitch-events</code></h3>
-<p>Leveraging POST requests you are able to add entries to the database.  Note this endpoint will make the event origin appear as coming from twitch.</p>
+<p>Leveraging POST requests you are able to add entries to the database. Note this endpoint will make the event origin appear as coming from twitch.</p>
 <h4 id="request_2">Request</h4>
 <pre><code class="language-bash">curl --request POST http://&lt;TAU_SERVER&gt;/api/v1/twitch-events -H 'Authorization: Token &lt;AUTH_TOKEN&gt;' -H 'Content-type: application/json' --data '{&quot;event_type&quot;:&quot;stream-offline&quot;,&quot;event_source&quot;:&quot;EventSub&quot;,&quot;event_data&quot;:{&quot;broadcaster_user_id&quot;:&quot;536397236&quot;,&quot;broadcaster_user_name&quot;:&quot;FiniteSingularity&quot;,&quot;broadcaster_user_login&quot;:&quot;finitesingularity&quot;}}'
 </code></pre>
@@ -320,7 +323,7 @@
 }
 </code></pre>
 <h2 id="heartbeats">Heartbeats</h2>
-<p>The heartbeat endpoint allows you to perform a health check on the server application.  It does not require authentication/authorization, and on success will return an <code>http 200</code> with the message outlined below.</p>
+<p>The heartbeat endpoint allows you to perform a health check on the server application. It does not require authentication/authorization, and on success will return an <code>http 200</code> with the message outlined below.</p>
 <h3 id="get-apiv1heartbeat">GET <code>/api/v1/heartbeat</code></h3>
 <h4 id="request_4">Request</h4>
 <pre><code class="language-bash">curl http://&lt;TAU_SERVER&gt;/api/v1/heartbeat
@@ -331,7 +334,7 @@
 }
 </code></pre>
 <h2 id="streamers">Streamers</h2>
-<p>The streamers API lists all the streamers that you are monitoring for notifications when they go online/offline.  You can also get a list of their streams on a nested endpoint.</p>
+<p>The streamers API lists all the streamers that you are monitoring for notifications when they go online/offline. You can also get a list of their streams on a nested endpoint.</p>
 <h3 id="get-apiv1streamers">GET <code>/api/v1/streamers</code></h3>
 <p>Get the list of streamers TAU is monitoring for online/offline notifications</p>
 <h4 id="request_5">Request</h4>
