@@ -78,7 +78,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Railway Deployment</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Railway Deployment</li>
     <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/Team-TAU/tau/edit/master/docs/deployment/railway.md"
           class="icon icon-github"> Edit on GitHub</a>
@@ -86,7 +87,6 @@
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
@@ -102,9 +102,10 @@
 <li>Click "+ New" in the upper right, and select "Database" --&gt; "Add Redis"</li>
 <li>Click "+ New" in the upper right, and select "Empty Service"</li>
 <li>Click on the new empty service which was just created.</li>
-<li>Click the "Settings" tab under "Environment &gt; Service Domains", edit the production domain to a url that you want (e.g.- tau-twitchname.up.railway.app). Note this domain, as it will be required in your environment variables, and when setting up TAU in the twitch dev dashboard.</li>
-<li><a href="../twitch_dev/">Get a Twitch Client ID and Client Secret</a>. NOTE- rather than <code>http://localhost:PORT/twitch-callback/</code> as your OAuth redirect URL, you must use https, the domain you set up in the prior step, and no port. E.g.: <code>https://tau-twitchname.up.railway.app</code>.</li>
-<li>To add environment variables to the new Empty Service, copy the sample <code>.env</code> data below. Back in the Empty Service you created, under the <code>Variables</code> section, click <code>RAW Editor</code>, and paste in the sample <code>.env</code> data and fill out with required information, then click <code>Add</code>. Then close the service panel (x in the upper right corner of the panel)</li>
+<li>Click the "Settings" tab, then under "Service" change the "Service Name" to something similar to <code>tau-twitchusername</code> using your Twitch username</li>
+<li>In the same "Settings" tab under the "Environment &gt; Domains", click the "Generate Domain" button. A new URL will be generated for you. You can edit this URL as you'd like. Note this domain, as it will be required in your environment variables, used when setting up TAU in the twitch dev dashboard, and the URL you will access the TAU Dashboard from.</li>
+<li><a href="../twitch_dev/">Get a Twitch Client ID and Client Secret</a>. NOTE- rather than <code>http://localhost:PORT/twitch-callback/</code> as your OAuth redirect URL, you must use https and the domain you set up in the prior step without a port. E.g.: <code>https://tau-twitchname.up.railway.app/twitch-callback/</code>.</li>
+<li>To add environment variables to the new Empty Service, copy the sample <code>.env</code> data below. Back in the Empty Service you created, under the "Variables" section, click "RAW Editor", and paste in the sample <code>.env</code> data and fill out with required information and save. After, close the service panel (x in the upper right corner of the panel)</li>
 <li>Open a local terminal, navigate to your TAU root directory, and install the railway CLI using npm: <code>npm i -g @railway/cli</code> then login to railway: <code>railway login</code></li>
 <li>In your railway project dashboard, click on "Set up your project locally" in the lower left. Copy the link command with your projects UUID (something like: <code>railway link SOME-UUID-HERE</code>)</li>
 <li>Back in the terminal paste/run the link command.</li>
