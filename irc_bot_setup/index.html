@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Breaking Changes for recent TAU version - tau</title>
+    <title>IRC Chatbot Setup - tau</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Breaking Changes for recent TAU version";
-        var mkdocs_page_input_path = "new_tau_changes.md";
+        var mkdocs_page_name = "IRC Chatbot Setup";
+        var mkdocs_page_input_path = "irc_bot_setup.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -79,9 +79,9 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Breaking Changes for recent TAU version</li>
+      <li>IRC Chatbot Setup</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/Team-TAU/tau/edit/master/docs/new_tau_changes.md" class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/Team-TAU/tau/edit/master/docs/irc_bot_setup.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -89,20 +89,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="breaking-changes-for-recent-tau-version">Breaking Changes for recent TAU version</h1>
-<p>A recent release of TAU created some breaking changes from the original version of TAU. The new version of TAU now allows you to chose the specific <code>EventSub</code> subscriptions you want to subscribe to, and moves all of the View Subscription events (Subscribe, Gift Sub, etc..) from PubSub to EventSub. In order to accomodate these new features, the event naming convention was changed, which may break any existing integrations you have set up with older versions of TAU. Specifically, the following event names were changed:</p>
-<ul>
-<li>old: <code>update</code>, new: <code>channel-update</code></li>
-<li>old: <code>follow</code>, new: <code>channel-follow</code></li>
-<li>old: <code>point-redemption</code>, new: <code>channel-channel_points_custom_reward_redemption-add</code></li>
-<li>old: <code>cheer</code>, new: <code>channel-cheer</code></li>
-<li>old: <code>subscribe</code>, new: <code>channel-subscribe</code></li>
-<li>old: <code>raid</code>, new: <code>channel-raid</code></li>
-<li>old: <code>hype-train-progress</code>, new: <code>channel-hype_train-progress</code></li>
-<li>old: <code>hype-train-begin</code>, new: <code>channel-hype_train-begin</code></li>
-<li>old: <code>hype-train-end</code>, new: <code>channel-hype_train-end</code></li>
-</ul>
-<p>Additionally, on your first run of the new TAU version, you will need to select the <code>EventSub</code> events you want to subscribe to. Once you load the dashboard, "Config" in the side menu, toggle on all of the Twitch EventSub Subscriptions you require, then click the "Update Subscriptions" button at the bottom of the subscription list, and approve the new required scopes.</p>
+                <h1 id="irc-chatbot-setup">IRC Chatbot Setup</h1>
+<p>TAU automatically connects your streamer user to chat if you have the User IRC option enabled in the Config panel.</p>
+<p>If you would like to enable IRC Bots with different accounts (e.g.- YourBotName) you can do so by following the instructions below.</p>
+<p>Once your bot accounts are set up, you can subscribe to their websocket connection following the instructions here [link to instructions]</p>
+<h2 id="irc-bot-setup">IRC Bot Setup</h2>
+<ol>
+<li>Go to ChatBots tab in the dashboard.</li>
+<li>Click the [+] button in the upper right corner of the Chat Bot Status card.</li>
+<li>Click "Copy URL" in the resulting modal.</li>
+<li>Open a new browser instance (preferably private/incognito mode) and paste the url in the address bar.</li>
+<li>Log in as the bot account you want to enable, and click "Authorize"</li>
+<li>Close this browser window when instructed to do so, and refresh the TAU dashboard.</li>
+<li>You should now see your bot listed.</li>
+<li>Click add next to your bot's name to add a channel for the bot to join.  In the resulting modal, enter the Twitch User's channel for the bot.</li>
+<li>Your bot should now be ready to do all of its bot things.</li>
+<li>Go to [link to instructions] to link up your bot code to TAU.</li>
+</ol>
               
             </div>
           </div><footer>
